@@ -10,6 +10,7 @@ RUN echo 'PermitRootLogin yes' >>  /etc/ssh/sshd_config
 RUN echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
 RUN echo root:hp206164|chpasswd
 RUN sudo service ssh start
+RUN chmod 755 /1.sh
 CMD  /1.sh
 
 
