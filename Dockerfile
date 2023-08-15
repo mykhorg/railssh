@@ -4,10 +4,11 @@ RUN apt update -y > /dev/null 2>&1 && apt upgrade -y > /dev/null 2>&1 && apt ins
 ENV LANG en_US.utf8
 RUN apt install openssh-server curl wget unzip sudo -y > /dev/null 2>&1
 RUN mkdir /run/sshd
+RUN echo "curl -s ifconfig.io" >>/1.sh
 RUN echo '/usr/sbin/sshd -D' >>/1.sh
 RUN echo 'PermitRootLogin yes' >>  /etc/ssh/sshd_config 
 RUN echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
-RUN echo "curl -s ifconfig.io" >>/1.sh
+RUN echo root:hp206164|chpasswd
 RUN sudo service ssh start
 CMD  /1.sh
 
